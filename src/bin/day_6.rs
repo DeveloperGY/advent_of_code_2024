@@ -161,14 +161,13 @@ impl GuardSim {
 
         for pos in wall_positions {
             let wall_index = pos.get_index(self.width);
-            let old_c = self.board[wall_index];
-            self.board[wall_index] = 'O';
+            self.board[wall_index] = '#';
 
             if self.simulate().is_none() {
                 count += 1;
             }
 
-            self.board[wall_index] = old_c;
+            self.board[wall_index] = '.';
         }
 
         count
@@ -184,7 +183,7 @@ impl GuardSim {
             let pos_index = shrodingers_guard.get_index(self.width);
 
             let c = self.board[pos_index];
-            if c == '#' || c == 'O' {
+            if c == '#' {
                 let mut turned_guard = guard;
                 turned_guard.turn();
                 turned_guard
