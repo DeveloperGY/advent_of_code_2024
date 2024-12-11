@@ -24,11 +24,11 @@ fn main() {
 }
 
 fn blink(stone: u64, iter_count: u64, cache: &mut HashMap<(u64, u64), u64>) -> u64 {
-    fn inner(stone: u64, iter_count: u64, cache: &mut HashMap<(u64, u64), u64>) -> u64 {
-        if iter_count == 0 {
-            return 1;
-        }
+    if iter_count == 0 {
+        return 1;
+    }
 
+    fn inner(stone: u64, iter_count: u64, cache: &mut HashMap<(u64, u64), u64>) -> u64 {
         match stone {
             0 => blink(1, iter_count - 1, cache),
             stone if (stone.ilog10() + 1) % 2 == 0 => {
