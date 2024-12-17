@@ -168,7 +168,7 @@ impl Maze {
         match cell {
             '#' => vec![],
             'E' => {
-                println!("Reindeer Finished With {}", reindeer.current_score);
+                println!("Reindeer Finished With {}", reindeer.current_score + 1);
                 vec![reindeer]
             }
             '.' | 'S' => {
@@ -204,7 +204,7 @@ impl Maze {
             .map(|r| r.visited.clone())
             .reduce(|a, b| a.union(&b).map(|e| *e).collect::<HashSet<_>>())
             .unwrap();
-        (lowest_score, set.len())
+        (lowest_score, set.len() + 1)
     }
 }
 
