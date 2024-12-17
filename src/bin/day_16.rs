@@ -168,7 +168,7 @@ impl Maze {
         match cell {
             '#' => vec![],
             'E' => {
-                println!("Reindeer Finished With {}", reindeer.current_score + 1);
+                println!("Reindeer Finished With {}", reindeer.current_score);
                 vec![reindeer]
             }
             '.' | 'S' => {
@@ -197,14 +197,14 @@ impl Maze {
             .min_by(|lhs, rhs| lhs.current_score.cmp(&rhs.current_score))
             .unwrap();
 
-        let lowest_score = r.current_score + 1; // Last cell wasnt counted by asexually reproducing reindeer
+        let lowest_score = r.current_score;
         let set = finished_reindeer
             .iter()
-            .filter(|r| r.current_score == lowest_score - 1)
+            .filter(|r| r.current_score == lowest_score)
             .map(|r| r.visited.clone())
             .reduce(|a, b| a.union(&b).map(|e| *e).collect::<HashSet<_>>())
             .unwrap();
-        (lowest_score, set.len() + 1)
+        (lowest_score, set.len() + 1) // End cell wasnt counted by asexually reproducing reindeer
     }
 }
 
