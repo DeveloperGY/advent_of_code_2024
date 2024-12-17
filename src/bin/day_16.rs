@@ -200,7 +200,7 @@ impl Maze {
         let lowest_score = r.current_score + 1; // Last cell wasnt counted by asexually reproducing reindeer
         let set = finished_reindeer
             .iter()
-            .filter(|r| r.current_score == lowest_score)
+            .filter(|r| r.current_score == lowest_score - 1)
             .map(|r| r.visited.clone())
             .reduce(|a, b| a.union(&b).map(|e| *e).collect::<HashSet<_>>())
             .unwrap();
